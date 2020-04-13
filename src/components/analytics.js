@@ -1,26 +1,27 @@
 /* eslint-disable jsx-a11y/alt-text */
-import React, { useState } from 'react';
+import React from 'react';
 import { Card, Col, Row } from 'antd';
 // import logo from '../user.png';
 // import Loading from './Loading';
 import ChartViewer from './chart';
-import Pie from './pie';
+import PieChart from './pie';
+import Post from './post';
 
 function Analytics(data) {
     return (
         <div className="site-card-wrapper">
             <Row gutter={16}>
                 <Col span={12}>
-                    <Card style={{borderRadius: '20px', boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}>
+                    <Card style={{borderRadius: '10px'}}>
                         <Row>
                             <Col span={6}>
-                                <img width="150" src={data.data['Profile pic url']} />
+                                <img width="130" src={data.data['Profile pic url']} />
                             </Col>
                             <Col span={18} style={{textAlign:"right", marginLeft: "0"}}>
                                 <div style={{fontSize: "30px", fontWeight: "bold"}}>  
                                     {data.data['username']}
                                 </div>
-                                <div style={{fontSize: "20px"}}>
+                                <div style={{fontSize: '10px'}}>
                                     {data.data['Full name']}
                                 </div>
                                 <div>
@@ -31,8 +32,8 @@ function Analytics(data) {
                     </Card>
                 </Col>
                 <Col span={4}>
-                    <Card style={{borderRadius: '20px', boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}>
-                        <div style={{textAlign: "center", fontSize: "30px"}}>
+                    <Card style={{borderRadius: '10px'}}>
+                        <div style={{textAlign: "center", fontSize: "20px"}}>
                             Followers
                         </div>
                         <div style={{textAlign: "center", fontSize: "60px", fontWeight: "bold"}}>
@@ -41,8 +42,8 @@ function Analytics(data) {
                     </Card>
                 </Col>
                 <Col span={4}>
-                    <Card style={{borderRadius: '20px', boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}>
-                        <div style={{textAlign: "center", fontSize: "30px"}}>
+                    <Card style={{borderRadius: '10px'}}>
+                        <div style={{textAlign: "center", fontSize: "20px"}}>
                             Following
                         </div>
                         <div style={{textAlign: "center", fontSize: "60px", fontWeight: "bold"}}>
@@ -51,8 +52,8 @@ function Analytics(data) {
                     </Card>
                 </Col>
                 <Col span={4}>
-                    <Card style={{borderRadius: '20px', boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}>
-                        <div style={{textAlign: "center", fontSize: "30px"}}>
+                    <Card style={{borderRadius: '10px'}}>
+                        <div style={{textAlign: "center", fontSize: "20px"}}>
                             Posts
                         </div>
                         <div style={{textAlign: "center", fontSize: "60px", fontWeight: "bold"}}>
@@ -61,15 +62,27 @@ function Analytics(data) {
                     </Card>
                 </Col>
             </Row>
-            <Row gutter={16} style={{marginTop: "20px"}}>
+            <Row gutter={16} style={{marginTop: '10px'}}>
                 <Col span={12}>
-                <Card style={{borderRadius: '20px', boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}>
-                    <ChartViewer />            
+                <Card style={{borderRadius: '10px'}}>
+                    <Post />
                 </Card>
                 </Col>
                 <Col span={12}>
-                <Card style={{borderRadius: '20px', boxShadow: '0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'}}>
-                <ChartViewer />          
+                <Card style={{borderRadius: '10px'}}>
+                    <PieChart />
+                </Card>
+                </Col>
+            </Row>
+            <Row gutter={16} style={{marginTop: '10px'}}>
+                <Col span={12}>
+                <Card style={{borderRadius: '10px'}}>            
+                coming
+                </Card>
+                </Col>
+                <Col span={12}>
+                <Card style={{borderRadius: '10px'}}>
+                    <ChartViewer />
                 </Card>
                 </Col>
             </Row>

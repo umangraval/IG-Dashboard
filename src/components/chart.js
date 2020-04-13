@@ -1,85 +1,47 @@
-import React from "react";
-import FusionCharts from "fusioncharts";
-import TimeSeries from "fusioncharts/fusioncharts.timeseries";
-import ReactFC from "react-fusioncharts";
+import React, { useState, useEffect } from "react";
+import Chart from "react-apexcharts";
 
-ReactFC.fcRoot(FusionCharts, TimeSeries);
+function Line() {
+  const [options, setOptions] = useState({});
+  const [series, setSeries] = useState([]);
 
-const jsonify = res => res.json();
-const dataFetch = fetch(
-  "https://s3.eu-central-1.amazonaws.com/fusion.store/ft/data/line-chart-with-time-axis-data.json"
-).then(jsonify);
-const schemaFetch = fetch(
-  "https://s3.eu-central-1.amazonaws.com/fusion.store/ft/schema/line-chart-with-time-axis-schema.json"
-).then(jsonify);
+  useEffect(() => {
+    fetch("http://corona.camcann.com/api/followtimeline")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          var categories = [];
+          var data = [];
+          var key;
+          for(key = 0;key < result.Followtimeline.length;key++){
+            categories.push(Object.keys(result.Followtimeline[key])[0]);
+            data.push(Object.values(result.Followtimeline[key])[0]);          }
+          setOptions({chart: {
+            id: "basic-bar"
+          },
+          xaxis: { categories }});
+          setSeries([{name: "series-1",data}])
+        },
+        (error) => {
+        }
+      )
+  }, [])
 
-const dataSource = {
-  chart: {},
-  caption: {
-    text: "Sales Analysis"
-  },
-  subcaption: {
-    text: "Grocery"
-  },
-  yaxis: [
-    {
-      plot: {
-        value: "Grocery Sales Value"
-      },
-      format: {
-        prefix: "$"
-      },
-      title: "Sale Value"
-    }
-  ]
-};
-
-class ChartViewer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onFetchData = this.onFetchData.bind(this);
-    this.state = {
-      timeseriesDs: {
-        type: "timeseries",
-        renderAt: "container",
-        width: "600",
-        height: "400",
-        dataSource
-      }
-    };
-  }
-
-  componentDidMount() {
-    this.onFetchData();
-  }
-
-  onFetchData() {
-    Promise.all([dataFetch, schemaFetch]).then(res => {
-      const data = res[0];
-      const schema = res[1];
-      const fusionTable = new FusionCharts.DataStore().createDataTable(
-        data,
-        schema
-      );
-      const timeseriesDs = Object.assign({}, this.state.timeseriesDs);
-      timeseriesDs.dataSource.data = fusionTable;
-      this.setState({
-        timeseriesDs
-      });
-    });
-  }
-
-  render() {
     return (
-      <div>
-        {this.state.timeseriesDs.dataSource.data ? (
-          <ReactFC {...this.state.timeseriesDs} />
-        ) : (
-          "loading"
-        )}
+      <div className="app">
+        <div className="row">
+          <div className="mixed-chart">
+            <h2>Follower timeline</h2>
+            <Chart
+              options={options}
+              series={series}
+              type="line"
+              width="500"
+            />
+          </div>
+        </div>
       </div>
     );
-  }
 }
 
-export default ChartViewer;
+export default Line;

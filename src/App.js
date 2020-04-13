@@ -58,13 +58,13 @@ function App() {
       </Menu.Item>
     </Menu>
   </Sider>
-  <Layout style={{background: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(200,212,212,1) 0%, rgba(86,94,96,1) 100%)'}}>
-    <Content style={{ margin: '24px 16px 0' }}>
+  <Layout>
+    <Content style={{ margin: '10px 16px 0' }}>
       <div className="site-layout-background" style={{ padding: 24, minHeight: 854 }}>
       { isLoaded ? <Analytics  data={data} /> : <Loading />}  
     </div>
     </Content>
-    <Footer style={{ textAlign: 'center', background: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(200,212,212,1) 0%, rgba(86,94,96,1) 100%)' }}>By Umang Raval</Footer>
+    <Footer style={{ textAlign: 'center'}}>By Umang Raval</Footer>
   </Layout>
 </Layout>
 </div>
