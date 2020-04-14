@@ -6,6 +6,9 @@ import { Card, Col, Row } from 'antd';
 import ChartViewer from './chart';
 import PieChart from './pie';
 import Post from './post';
+import Hashtags from './hashtags';
+import Comments from './comments';
+import {ArrowUpOutlined} from '@ant-design/icons';
 
 function Analytics(data) {
     return (
@@ -36,9 +39,19 @@ function Analytics(data) {
                         <div style={{textAlign: "center", fontSize: "20px"}}>
                             Followers
                         </div>
-                        <div style={{textAlign: "center", fontSize: "60px", fontWeight: "bold"}}>
+                        <Row>
+                        <Col span={16}>
+                        <div style={{textAlign: "right", fontSize: "60px", fontWeight: "bold"}}>
                             {data.data['Number of followers']}
                         </div>
+                        </Col>
+                        <Col>
+                        <span style={{color: 'green'}}>
+                        <ArrowUpOutlined />
+                        {data.data['diff']}
+                        </span>
+                        </Col>
+                        </Row>
                     </Card>
                 </Col>
                 <Col span={4}>
@@ -75,12 +88,17 @@ function Analytics(data) {
                 </Col>
             </Row>
             <Row gutter={16} style={{marginTop: '10px'}}>
-                <Col span={12}>
+                <Col span={8}>
                 <Card style={{borderRadius: '10px'}}>            
-                coming
+                <Hashtags />
                 </Card>
                 </Col>
-                <Col span={12}>
+                <Col span={8}>
+                <Card style={{borderRadius: '10px'}}>            
+                <Comments />
+                </Card>
+                </Col>
+                <Col span={8}>
                 <Card style={{borderRadius: '10px'}}>
                     <ChartViewer />
                 </Card>

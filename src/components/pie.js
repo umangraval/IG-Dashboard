@@ -1,6 +1,7 @@
 import Chart from "react-apexcharts";
 import React , { useEffect, useState} from 'react';
 import {Row, Col} from 'antd';
+import {PieChartOutlined} from '@ant-design/icons';
 
 function PieChart() {
   const [labels, setLabel] = useState({});
@@ -35,6 +36,8 @@ function PieChart() {
     return (
       <div className="donut">
         <Row>
+          <Col>
+            <PieChartOutlined style={{fontSize: "30px"}}/></Col>
           <Col>
             <h2 align="center">Like Counts</h2>
             <Chart options={labels} series={lseries} type="pie" width="360" />

@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 import { Layout, Menu } from 'antd';
-import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import { DashboardOutlined, UserOutlined } from '@ant-design/icons';
 import Analytics from './components/analytics';
 import Loading from './components/Loading';
+import Alert from './components/alert';
 
 const { Content, Footer, Sider } = Layout;
 
@@ -41,26 +42,19 @@ function App() {
     <div align="center" style={{margin: "40px", fontSize: "28px", color: "white"}}>CovidAI</div>
     <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
       <Menu.Item key="1">
-        <UserOutlined />
-        <span className="nav-text">nav 1</span>
+      <DashboardOutlined />
+        <span className="nav-text">Dashboard</span>
       </Menu.Item>
       <Menu.Item key="2">
-        <VideoCameraOutlined />
-        <span className="nav-text">nav 2</span>
-      </Menu.Item>
-      <Menu.Item key="3">
-        <UploadOutlined />
-        <span className="nav-text">nav 3</span>
-      </Menu.Item>
-      <Menu.Item key="4">
         <UserOutlined />
-        <span className="nav-text">nav 4</span>
+        <span className="nav-text">About</span>
       </Menu.Item>
     </Menu>
   </Sider>
   <Layout>
     <Content style={{ margin: '10px 16px 0' }}>
       <div className="site-layout-background" style={{ padding: 24, minHeight: 854 }}>
+      { <Alert /> }
       { isLoaded ? <Analytics  data={data} /> : <Loading />}  
     </div>
     </Content>

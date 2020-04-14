@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
+import {LineChartOutlined} from '@ant-design/icons';
+import {Row, Col} from 'antd';
 
 function Line() {
   const [options, setOptions] = useState({});
@@ -28,18 +30,23 @@ function Line() {
   }, [])
 
     return (
-      <div className="app">
-        <div className="row">
-          <div className="mixed-chart">
-            <h2>Follower timeline</h2>
-            <Chart
-              options={options}
-              series={series}
-              type="line"
-              width="500"
+      <div className="line">
+      <Row>
+        <Col span={6}>
+          <LineChartOutlined style={{fontSize: "30px"}}/>
+        </Col>
+        <Col span={12}>
+          <h2 align="center">Follower timeline</h2>
+        </Col>
+      </Row>
+      <Row>
+        <Chart
+          options={options}
+          series={series}
+          type="line"
+          width="500"
             />
-          </div>
-        </div>
+      </Row>        
       </div>
     );
 }
