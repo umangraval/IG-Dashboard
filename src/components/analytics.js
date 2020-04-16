@@ -9,10 +9,12 @@ import Post from './post';
 import Hashtags from './hashtags';
 import Comments from './comments';
 import {ArrowUpOutlined} from '@ant-design/icons';
+import FadeIn from 'react-fade-in';
 
 function Analytics(data) {
     return (
         <div className="site-card-wrapper">
+            <FadeIn>
             <Row gutter={16}>
                 <Col span={12}>
                     <Card style={{borderRadius: '10px'}}>
@@ -104,6 +106,7 @@ function Analytics(data) {
                 </Card>
                 </Col>
             </Row>
+            </FadeIn>
         </div>
     );
 }
