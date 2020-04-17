@@ -3,12 +3,12 @@ import Chart from "react-apexcharts";
 import {LineChartOutlined} from '@ant-design/icons';
 import {Row, Col} from 'antd';
 
-function Line() {
+function Line(username) {
   const [options, setOptions] = useState({});
   const [series, setSeries] = useState([]);
 
   useEffect(() => {
-    fetch("http://corona.camcann.com/api/followtimeline")
+    fetch("http://corona.camcann.com/api/"+username.username+"/followtimeline")
       .then(res => res.json())
       .then(
         (result) => {
@@ -27,7 +27,7 @@ function Line() {
         (error) => {
         }
       )
-  }, [])
+  }, [username.username])
 
     return (
       <div className="line">

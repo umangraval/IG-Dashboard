@@ -1,11 +1,12 @@
 import React , { useEffect, useState} from 'react';
 import {Row, Col, Divider} from 'antd';
 import {CommentOutlined, LikeOutlined} from '@ant-design/icons';
-function Post() {
+
+function Post(username) {
   const [data, setData] = useState({});
-  
+
   useEffect(() => {
-    fetch("http://corona.camcann.com/api/latest")
+    fetch("http://corona.camcann.com/api/"+username.username+"/latest")
       .then(res => res.json())
       .then(
         (result) => {
@@ -14,7 +15,7 @@ function Post() {
         (error) => {
         }
       )
-  }, [])
+  }, [username.username])
   
     return (
       <div className="post">

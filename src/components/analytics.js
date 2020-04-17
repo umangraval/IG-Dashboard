@@ -12,6 +12,8 @@ import {ArrowUpOutlined} from '@ant-design/icons';
 import FadeIn from 'react-fade-in';
 
 function Analytics(data) {
+    console.log(data);
+
     return (
         <div className="site-card-wrapper">
             <FadeIn>
@@ -80,12 +82,12 @@ function Analytics(data) {
             <Row gutter={16} style={{marginTop: '10px'}}>
                 <Col span={12}>
                 <Card style={{borderRadius: '10px'}}>
-                    <Post />
+                    <Post username={data.username} />
                 </Card>
                 </Col>
                 <Col span={12}>
                 <Card style={{borderRadius: '10px'}}>
-                    <PieChart />
+                    <PieChart username={data.username} />
                 </Card>
                 </Col>
             </Row>
@@ -97,12 +99,12 @@ function Analytics(data) {
                 </Col>
                 <Col span={8}>
                 <Card style={{borderRadius: '10px'}}>            
-                <Comments />
+                <Comments username={data.username} />
                 </Card>
                 </Col>
                 <Col span={8}>
                 <Card style={{borderRadius: '10px'}}>
-                    <ChartViewer />
+                    <ChartViewer username={data.username} />
                 </Card>
                 </Col>
             </Row>

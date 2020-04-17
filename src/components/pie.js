@@ -3,13 +3,13 @@ import React , { useEffect, useState} from 'react';
 import {Row, Col} from 'antd';
 import {PieChartOutlined} from '@ant-design/icons';
 
-function PieChart() {
+function PieChart(username) {
   const [labels, setLabel] = useState({});
   const [lseries, setlSeries] = useState([]);
   const [cseries, setcSeries] = useState([]);
 
   useEffect(() => {
-    fetch("http://corona.camcann.com/api/likesncoms")
+    fetch("http://corona.camcann.com/api/"+username.username+"/likesncoms")
       .then(res => res.json())
       .then(
         (result) => {
@@ -31,7 +31,7 @@ function PieChart() {
         (error) => {
         }
       )
-  }, [])
+  }, [username.username])
 
     return (
       <div className="donut">

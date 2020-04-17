@@ -5,15 +5,19 @@ import { DashboardOutlined, UserOutlined } from '@ant-design/icons';
 import Analytics from './components/analytics';
 import Loading from './components/Loading';
 import Alert from './components/alert';
+import { Input } from 'antd';
+
+const { Search } = Input;
 
 const { Content, Footer, Sider } = Layout;
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [data, setItems] = useState({});
-
+  const [username, setUsername] = useState('manojraval');
+  
   useEffect(() => {
-    fetch("http://corona.camcann.com/api/covidai")
+    fetch("http://corona.camcann.com/api/"+username)
       .then(res => res.json())
       .then(
         (result) => {
@@ -24,7 +28,7 @@ function App() {
           setIsLoaded(true);
         }
       )
-  }, [])
+  }, [username])
 
   return (
     <div>
@@ -39,7 +43,7 @@ function App() {
       console.log(collapsed, type);
     }}
   >
-    <div align="center" style={{margin: "40px", fontSize: "28px", color: "white"}}>CovidAI</div>
+    <div align="center" style={{margin: "40px", fontSize: "28px", color: "white"}}>{username}</div>
     <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
       <Menu.Item key="1">
       <DashboardOutlined />
@@ -53,9 +57,10 @@ function App() {
   </Sider>
   <Layout>
     <Content style={{ margin: '10px 16px 0' }}>
+      <Search placeholder="input search text" onSearch={value => setUsername(value)} enterButton />
       <div className="site-layout-background" style={{ padding: 24, minHeight: 854 }}>
       { <Alert /> }
-      { isLoaded ? <Analytics  data={data} /> : <Loading />}  
+      { isLoaded ? <Analytics  username={username} data={data} /> : <Loading />}  
     </div>
     </Content>
     <Footer style={{ textAlign: 'center'}}>By Umang Raval</Footer>

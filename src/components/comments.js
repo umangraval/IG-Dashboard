@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { List } from 'antd';
 
 
-function Comments() {
+function Comments(username) {
     const [Comments, setComments] = useState({});
     
     useEffect(() => {
-        fetch("http://corona.camcann.com/api/coms")
+        fetch("http://corona.camcann.com/api/"+username.username+"/coms")
       .then(res => res.json())
       .then(
         (result) => {
