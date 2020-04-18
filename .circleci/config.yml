@@ -1,0 +1,63 @@
+version: 2.1
+
+executors:
+  my-executor:
+    docker:
+      - image: circleci/node:8
+    working_directory: /tmp
+
+jobs:
+  build:
+    executor: my-executor
+
+    working_directory: ~/
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run: npm install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      # run tests!
+      - run: npm run build --prod
+      - persist_to_workspace:
+          root: "~"
+          paths:
+            - build
+  deploy:
+    executor: my-executor
+    steps:
+      - attach_workspace:
+          at: ./build
+      - run: mkdir ~/.ssh
+      - run: ssh-keyscan $SSH_HOST >> ~/.ssh/known_hosts
+      - run: sudo apt install rsync
+      - run:
+          name: Deploy Over SSH
+          command: |
+            rsync -avz -e "ssh" --progress build $SSH_USER@$SSH_HOST:build
+#            scp -r build/* $SSH_USER@$SSH_HOST:build
+      - run: ssh $SSH_USER@$SSH_HOST 'chmod -R 755 ~/build'
+
+workflows:
+  version: 2.1
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
