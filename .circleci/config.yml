@@ -10,7 +10,7 @@ jobs:
   build:
     executor: my-executor
 
-    working_directory: ~/
+    working_directory: ~/r
 
     steps:
       - checkout
@@ -34,7 +34,7 @@ jobs:
       - persist_to_workspace:
           root: "~"
           paths:
-            - build
+            - r/build
   deploy:
     executor: my-executor
     steps:
