@@ -6,7 +6,7 @@ function Post(username) {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    fetch("http://corona.camcann.com/api/"+username.username+"/latest")
+    fetch("http://127.0.0.1:5000/insta/"+username.username+"/latest")
       .then(res => res.json())
       .then(
         (result) => {

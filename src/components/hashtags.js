@@ -10,7 +10,7 @@ function Hashtags() {
     const [Hashtags, setHashtags] = useState({});
     
     useEffect(() => {
-        fetch("http://corona.camcann.com/api/trending/"+keyword)
+        fetch("http://127.0.0.1:5000/trending/"+keyword)
       .then(res => res.json())
       .then(
         (result) => {
@@ -23,7 +23,7 @@ function Hashtags() {
       }, [keyword])
     
         
-    fetch("http://corona.camcann.com/api/trending/"+keyword)
+    fetch("http://127.0.0.1:5000/trending/"+keyword)
     .then(res => res.json())
     .then(
         (result) => {

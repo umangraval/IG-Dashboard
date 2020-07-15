@@ -17,7 +17,7 @@ function App() {
   const [username, setUsername] = useState('manojraval');
   
   useEffect(() => {
-    fetch("http://corona.camcann.com/api/"+username)
+    fetch("http://127.0.0.1:5000/insta/"+username)
       .then(res => res.json())
       .then(
         (result) => {
@@ -43,7 +43,7 @@ function App() {
       console.log(collapsed, type);
     }}
   >
-    <div align="center" style={{margin: "40px", fontSize: "28px", color: "white"}}>{username}</div>
+    <div align="center" style={{margin: "40px", fontSize: "28px", color: "white"}}>IG-DASH</div>
     <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
       <Menu.Item key="1">
       <DashboardOutlined />

@@ -8,7 +8,7 @@ function Line(username) {
   const [series, setSeries] = useState([]);
 
   useEffect(() => {
-    fetch("http://corona.camcann.com/api/"+username.username+"/followtimeline")
+    fetch("http://127.0.0.1:5000/insta/"+username.username+"/followtimeline")
       .then(res => res.json())
       .then(
         (result) => {

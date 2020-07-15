@@ -9,7 +9,7 @@ function PieChart(username) {
   const [cseries, setcSeries] = useState([]);
 
   useEffect(() => {
-    fetch("http://corona.camcann.com/api/"+username.username+"/likesncoms")
+    fetch("http://127.0.0.1:5000/insta/"+username.username+"/likesncoms")
       .then(res => res.json())
       .then(
         (result) => {
