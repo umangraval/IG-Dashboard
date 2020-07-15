@@ -9,4 +9,11 @@ It is analytics dashboard for instagram account. It provides details about accou
 * follower timeline
 * like and comment timeline hourly
 
+For server clone and run [Repo](https://github.com/umangraval/instagram-dashboard-api)
 
+## Running
+
+```
+npm i 
+npm start
+```
